@@ -2,3 +2,5 @@ node_modules/
 dis/
 
 logs/
+
+.env
