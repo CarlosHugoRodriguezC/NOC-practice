@@ -6,4 +6,6 @@
 
 2. create a file __.env__ based in the __.env.template__ and change the variables with the correct ones.
 
+3. execute `docker compose up -d` to setting up the database for development.
+
 3. execute the command `npm run dev`.
