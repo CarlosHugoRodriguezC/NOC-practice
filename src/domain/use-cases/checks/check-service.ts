@@ -1,5 +1,8 @@
+import path from "path";
 import { LogEntity, LogServerityLevel } from "../../entities/log.entity";
 import { LogRepository } from "../../repositories/log.repository";
+
+const currentPath = path.basename(__filename);
 
 interface CheckServiceUseCase {
   execute(url: string): Promise<boolean>;
@@ -22,10 +25,11 @@ export class CheckService implements CheckServiceUseCase {
         throw new Error(`Error checking service ${url}`);
       }
 
-      const log = new LogEntity(
-        LogServerityLevel.low,
-        `Service ${url} is working`
-      );
+      const log = new LogEntity({
+        level: LogServerityLevel.low,
+        message: `${url} is OK`,
+        origin: currentPath,
+      });
       this.logRepository.saveLog(log);
 
       this.successCallback && this.successCallback();
@@ -34,7 +38,12 @@ export class CheckService implements CheckServiceUseCase {
     } catch (error) {
       const errorMessage = `error with ${url}: ${error}`;
 
-      const log = new LogEntity(LogServerityLevel.high, errorMessage);
+      const log = new LogEntity({
+        level: LogServerityLevel.high,
+        message: errorMessage,
+        origin: currentPath,
+      });
+
       this.logRepository.saveLog(log);
 
       this.errorCallback && this.errorCallback(`error: ${error}`);
