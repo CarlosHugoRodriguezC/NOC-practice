@@ -12,6 +12,7 @@ async function main() {
     dbName: envs.MONGO_DB_NAME,
   });
 
+  Server.start();
   // const newLog = await LogModel.create({
   //   message: "Test message from mongo",
   //   level: "low",
