@@ -1,6 +1,7 @@
 import { Server } from "./presentation/server";
 import { envs } from "./config/plugins/env.plugin";
 import { LogModel, MongoDatabase } from "./data/mongo";
+import { PrismaClient, SeverityLevel } from "@prisma/client";
 
 (async () => {
   main();
@@ -11,6 +12,8 @@ async function main() {
     mongoUrl: envs.MONGO_URI,
     dbName: envs.MONGO_DB_NAME,
   });
+
+ 
 
   Server.start();
   // const newLog = await LogModel.create({

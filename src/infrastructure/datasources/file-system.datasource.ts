@@ -1,6 +1,7 @@
 import fs from "fs";
 import { LogDataSource } from "../../domain/datasources/log.datasource";
 import { LogEntity, LogServerityLevel } from "../../domain/entities/log.entity";
+import { log } from "console";
 
 export class FileSystemDatasource implements LogDataSource {
   private readonly logPath = "logs/";
@@ -30,6 +31,7 @@ export class FileSystemDatasource implements LogDataSource {
     const logAsJson = `${JSON.stringify(newLog)}\n`;
 
     fs.appendFileSync(this.allLogsPath, logAsJson);
+    console.log(`Log saved in file system #${logAsJson}}`);
 
     if (newLog.level === LogServerityLevel.low) return;
 

@@ -3,5 +3,6 @@ dis/
 
 logs/
 mongo/
+postgres/
 
 .env
