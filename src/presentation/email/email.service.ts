@@ -4,7 +4,7 @@ import { Attachment } from "nodemailer/lib/mailer";
 import { LogRepository } from "../../domain/repositories/log.repository";
 import { LogEntity, LogServerityLevel } from "../../domain/entities/log.entity";
 
-interface SendMailOptions {
+export interface SendMailOptions {
   to: string | string[];
   subject: string;
   htmlBody: string;
@@ -20,9 +20,8 @@ export class EmailService {
     },
   });
 
-  constructor(
-    // private readonly logRepository: LogRepository
-  ) {}
+  constructor() // private readonly logRepository: LogRepository
+  {}
 
   async sendEmail(props: SendMailOptions): Promise<boolean> {
     const { to, subject, htmlBody, attachments = [] } = props;

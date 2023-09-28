@@ -1,7 +1,9 @@
 {
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "postgres"
+    
   ],
   "include": [
     "src/**/*"
